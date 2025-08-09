@@ -14,8 +14,8 @@
             height: 100%;
             background-image: url('https://static.todamateria.com.br/upload/ma/ch/machadodeassis-cke.jpg'); /* Imagem do Machado de Assis */
             background-repeat: no-repeat;
-            background-position: left;
-            background-size: 50%; /* Ajusta o tamanho da imagem */
+            background-position: center;
+            background-size: 100%; /* Ajusta o tamanho da imagem */
             opacity: 0.1; /* Define a opacidade da marca d'água (ajuste este valor para mais ou menos visibilidade) */
             z-index: -1; /* Coloca a marca d'água atrás do conteúdo */
         }
