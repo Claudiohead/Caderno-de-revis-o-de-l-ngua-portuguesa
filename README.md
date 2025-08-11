@@ -1,2 +1,2 @@
-# Caderno-de-revis-o-de-l-ngua-portuguesa
+# Caderno-de-revisao-de-lingua-Portuguesa
 Revisão de LP
