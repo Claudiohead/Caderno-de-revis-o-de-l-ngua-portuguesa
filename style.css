@@ -25,3 +25,116 @@
             max-width: 800px;
             margin: 20;
             text-align: left;}
+            /*termina aqui
+            
+            .comments{
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 18px;
+  background: #ffffffcc; /* ajuste conforme seu fundo */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+}
+
+.comments h2{
+  margin: 0 0 12px 0;
+  font-size: 1.3rem;
+  color: #141414;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  resize: vertical;
+  background: #fff;
+  color: #111;
+}
+
+.comment-form .form-row{
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.comment-form button{
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #0f89ec;
+  color: #fff;
+  transition: background 0.15s ease;
+}
+
+.comment-form button[title]{
+  background: #888;
+}
+
+.comment-form button:hover{
+  filter: brightness(0.95);
+}
+
+/* lista de comentários */
+.comments-list{
+  margin-top: 18px;
+}
+
+.no-comments{
+  color: #555;
+  font-style: italic;
+}
+
+/* item de comentário */
+.comment-item{
+  border-top: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.comment-item header{
+  display:flex;
+  gap:8px;
+  align-items: baseline;
+  margin-bottom:6px;
+}
+
+.c-name{
+  color:#0b66a3;
+  font-size:0.96rem;
+}
+
+.c-time{
+  color:#888;
+  font-size:0.82rem;
+}
+
+.c-text{
+  margin:0;
+  color:#111;
+  white-space: pre-wrap;
+  line-height:1.45;
+  font-size:0.95rem;
+}
+
+/* acessibilidade (esconde labels visuais) */
+.visually-hidden{
+  position:absolute !important;
+  height:1px; width:1px;
+  overflow:hidden;
+  clip:rect(1px,1px,1px,1px);
+  white-space:nowrap;
+}
+
+/* responsividade */
+@media (max-width:480px){
+  .comments{ padding:14px; border-radius:10px; }
+  .comment-form .form-row{ flex-direction:column; }
+  .comment-form button{ width:100%; }
+}

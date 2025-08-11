@@ -286,6 +286,84 @@ conseguir dinheiro ou que não tenham nenhuma estrutura de proteção contra var
                importante em relação à ausência de acesso aos alimentos por parte significativa 
                da população.</div>
     </p>
+    
+<section id="comments" class="comments">
+  <h2>Comentários</h2>
 
+  <form id="commentForm" class="comment-form" onsubmit="return false;">
+    <label for="commentName" class="visually-hidden">Nome (opcional)</label>
+    <input type="text" id="commentName" placeholder="Seu nome (opcional)" maxlength="50">
+
+    <label for="commentText" class="visually-hidden">Comentário</label>
+    <textarea id="commentText" placeholder="Escreva seu comentário..." required maxlength="1000" rows="5"></textarea>
+
+    <div class="form-row">
+      <button id="submitComment" type="button">Enviar comentário</button>
+      <button id="clearComments" type="button" title="Apagar todos comentários (apenas no seu navegador)">Limpar</button>
+    </div>
+  </form>
+
+  <div id="commentsList" class="comments-list" aria-live="polite"></div>
+</section>
+
+<!-- Script mínimo para salvar/mostrar comentários no localStorage -->
+<script>
+(function(){
+  const STORAGE_KEY = 'site_comments';
+  const formName = document.getElementById('commentName');
+  const formText = document.getElementById('commentText');
+  const submitBtn = document.getElementById('submitComment');
+  const clearBtn = document.getElementById('clearComments');
+  const list = document.getElementById('commentsList');
+
+  function escapeHtml(s){
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function loadComments(){
+    const raw = localStorage.getItem(STORAGE_KEY);
+    try {
+      return raw ? JSON.parse(raw) : [];
+    } catch(e) { return []; }
+  }
+
+  function saveComments(arr){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  }
+
+  function render(){
+    const comments = loadComments();
+    if(!comments.length){
+      list.innerHTML = '<p class="no-comments">Seja o primeiro a comentar!</p>';
+      return;
+    }
+    list.innerHTML = comments.slice().reverse().map(c => {
+      const name = c.name ? `<strong class="c-name">${escapeHtml(c.name)}</strong>` : '<strong class="c-name">Anônimo</strong>';
+      const time = new Date(c.time).toLocaleString();
+      return `<article class="comment-item"><header>${name} <time class="c-time">${escapeHtml(time)}</time></header><p class="c-text">${escapeHtml(c.text).replace(/\n/g,'<br>')}</p></article>`;
+    }).join('');
+  }
+
+  submitBtn.addEventListener('click', function(){
+    const text = formText.value.trim();
+    if(!text) return formText.focus();
+    const comments = loadComments();
+    comments.push({ name: formName.value.trim(), text: text, time: Date.now() });
+    saveComments(comments);
+    formText.value = '';
+    render();
+  });
+
+  clearBtn.addEventListener('click', function(){
+    if(confirm('Apagar TODOS os comentários salvos neste navegador?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+  });
+
+  // inicializa
+  render();
+})();
+</script>
 </body>
 </html>
